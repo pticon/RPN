@@ -24,12 +24,6 @@ version(void)
 	printf(PROGNAME " " VERSION "\n");
 }
 
-static void
-interactive_header(void)
-{
-	printf(PROGNAME " " VERSION "\n");
-}
-
 static int
 process(char *(*get_input)(void *), void *priv)
 {
@@ -82,7 +76,7 @@ get_input_readline(void *arg)
 static int
 interactive(void)
 {
-	interactive_header();
+	version();
 
 	return process(get_input_readline, NULL);
 }
