@@ -1,0 +1,27 @@
+#
+# basic tests
+#
+
+# help
+help
+h
+
+# deep
+1 2 3 deep p f
+
+# abs
+1 abs p f
+-1 abs p f
+
+# dup
+2 dup p f
+2 d p f
+
+# swap
+12 34 swap p f
+
+# drop
+1 2 'abc' p drop p f
+
+# deep
+1 2 3 4 5 deep p f

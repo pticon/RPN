@@ -1,0 +1,4 @@
+usage: rpn [options] [file]
+options:
+	-h: display this and exit
+	-v: print version information and exit

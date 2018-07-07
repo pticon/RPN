@@ -1,0 +1,35 @@
+#
+# power tests
+#
+
+# integer
+10 0 pow p f
+10 0 ^ p f
+10 5 pow p f
+10 5 ^ p f
+
+# float
+10.0 0.0 pow p f
+10.0 0.0 ^ p f
+10.0 5.0 pow p f
+10.0 5.0 ^ p f
+
+# float and integer
+10.0 0 pow p f
+10.0 0 ^ p f
+10 0.0 pow p f
+10 0.0 ^ p f
+10.0 5 pow p f
+10.0 5 ^ p f
+10 5.0 pow p f
+10 5.0 ^ p f
+
+# not supported
+'aa' 2 pow p f
+'aa' 2 ^ p f
+2 'aa' pow p f
+2 'aa' ^ p f
+'aa' 2.0 pow p f
+'aa' 2.0 ^ p f
+2.0 'aa' pow p f
+2.0 'aa' ^ p f

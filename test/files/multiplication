@@ -1,0 +1,31 @@
+#
+# multiplication tests
+#
+
+# integer
+3 4 * p f
+3 4 x p f
+3 4 . p f
+3 4 mul p f
+
+# float
+3.0 4.0 * p f
+3.0 4.0 x p f
+3.0 4.0 . p f
+3.0 4.0 mul p f
+
+# float and integer
+3.0 4 * p f
+3.0 4 x p f
+3.0 4 . p f
+3.0 4 mul p f
+3 4.0 * p f
+3 4.0 x p f
+3 4.0 . p f
+3 4.0 mul p f
+
+# not supported
+'aaa' 4 * p f
+'aaa' 4.0 * p f
+1 'aaa' * p f
+1.0 'aaa' * p f

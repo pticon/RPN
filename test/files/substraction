@@ -1,0 +1,31 @@
+#
+# substraction tests
+#
+
+# integer
+10 9 - p f
+10 9 sub p f
+1 9 - p f
+1 9 sub p f
+
+# float
+1.0 9.0 - p f
+1.0 9.0 sub p f
+10.0 9.0 - p f
+10.0 9.0 sub p f
+
+# integer and float
+1 10.0 - p f
+1 10.0 sub p f
+10.0 1 - p f
+10.0 1 sub p f
+
+# not supported
+'a' 1 - p f
+'a' 1 sub p f
+1 'a' - p f
+1 'a' sub p f
+1.0 'a' - p f
+1.0 'a' sub p f
+'a' 1.0 - p f
+'a' 1.0 sub p f

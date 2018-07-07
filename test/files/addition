@@ -1,0 +1,39 @@
+#
+# addition tests
+#
+
+# integer
+1 2 + p f
+1 2 add p f
+2 1 + p f
+2 1 add p f
+100 78798 7687687 + + p f
+100 78798 7687687 add add p f
+
+# float
+1.0 2.0 + p f
+1.0 2.0 add p f
+2.0 1.0 + p f
+2.0 1.0 add p f
+8911.0 2122.0 122.0 + + p f
+8911.0 2122.0 122.0 add add p f
+
+# float and integer
+1.0 2 + p f
+1.0 2 add p f
+2 1.0 + p f
+2 1.0 add p f
+291 1.0 1111 + + p f
+291 1.0 1111 add add p f
+
+# string
+'aaa' 'bbb' + p f
+'aaa' 'bbb' add p f
+'bbb' 'aaa' + p f
+'bbb' 'aaa' add p f
+'a' 'bb' 'ccc' + + p f
+'a' 'bb' 'ccc' add add p f
+
+# not supported
+'1' 2 + p f
+'1' 2 add p f

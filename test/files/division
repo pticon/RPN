@@ -1,0 +1,33 @@
+#
+# division tests
+#
+
+# integer
+6 2 / p f
+6 2 div p f
+3 2 / p f
+3 2 div p f
+
+# float
+6.0 2.0 / p f
+6.0 2.0 div p f
+3.0 2.0 / p f
+3.0 2.0 div p f
+
+# float and integer
+6.0 2 / p f
+6 2.0 / p f
+6.0 2 div p f
+6.0 2.0 div p f
+3.0 2 / p f
+3 2.0 / p f
+3.0 2 div p f
+3 2.0 div p f
+
+# not supported
+'aaa' 2 / p f
+'aaa' 2 div p f
+2 'aaa' / p f
+2 'aaa' div p f
+'aaa' 2.0 / p f
+'aaa' 2.0 div p f

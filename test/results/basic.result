@@ -1,0 +1,59 @@
+abs                 	: absolute value
+add                 (+)	: addition
+deep                	: stack depth
+div                 (/)	: division
+drop                	: drop the last element on the stack
+dup                 (d)	: duplicate the last element on the stack
+flush               (f)	: flush the stack
+help                (h)	: print operators
+inc                 	: incremente the last element
+++                  	: incremente the last element
+mul                 (*)	: multiplication
+x			: multiplication
+.			: multiplication
+pow                 (^)	: power
+print               (p)	: print stack
+quit                (q)	: quit rpn
+sub                 (-)	: substraction
+swap                (s)	: swap the last 2 element on the stack
+abs                 	: absolute value
+add                 (+)	: addition
+deep                	: stack depth
+div                 (/)	: division
+drop                	: drop the last element on the stack
+dup                 (d)	: duplicate the last element on the stack
+flush               (f)	: flush the stack
+help                (h)	: print operators
+inc                 	: incremente the last element
+++                  	: incremente the last element
+mul                 (*)	: multiplication
+x			: multiplication
+.			: multiplication
+pow                 (^)	: power
+print               (p)	: print stack
+quit                (q)	: quit rpn
+sub                 (-)	: substraction
+swap                (s)	: swap the last 2 element on the stack
+1
+2
+3
+3
+1
+1
+2
+2
+2
+2
+34
+12
+1
+2
+abc
+1
+2
+1
+2
+3
+4
+5
+5
