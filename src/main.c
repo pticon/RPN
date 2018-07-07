@@ -95,20 +95,24 @@ get_input_file(void *arg)
 	FILE	*f = arg;
 	int	len;
 
-retry:
-	if ( getline(&line, &n, f) < 0 )
-		return NULL;
+	for (;;)
+	{
+		if ( getline(&line, &n, f) < 0 )
+			return NULL;
 
-	len = strlen(line);
+		len = strlen(line);
 
-	if ( len && line[len-1] == '\n' )
-		line[--len] = '\0';
+		if ( len && line[len-1] == '\n' )
+			line[--len] = '\0';
 
-	if ( !len )
-		goto retry;
+		if ( !len )
+			continue;
 
-	if ( line[0] == '#' )
-		goto retry;
+		if ( line[0] == '#' )
+			continue;
+
+		break;
+	}
 
 	return line;
 }
