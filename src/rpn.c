@@ -29,6 +29,10 @@ rpn_geterr(enum rpn_code err)
 		case RPN_NOT_SUPPORTED:
 		c = "Not supported";
 		break;
+
+		case RPN_INVALID_OPERATOR:
+		c = "Invalid operator";
+		break;
 	}
 
 	return c;

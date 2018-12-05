@@ -11,11 +11,14 @@ configure
 depcomp
 install-sh
 missing
+ylwrap
 src/.deps/
 src/Makefile
 src/Makefile.in
 src/config.h
 src/config.h.in
-src/stamp-h1
 src/rpn
+src/rpn_lex.c
+src/rpn_lex.h
+src/stamp-h1
 *.o

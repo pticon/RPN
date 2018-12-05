@@ -77,6 +77,14 @@ AC_CHECK_HEADER(unistd.h, [], [echo "error: unistd.h not found!"; exit -1])
 # Checks for library functions.
 #AC_CHECK_FUNCS([strlcat])
 
+# Checks for flex
+AC_PROG_LEX
+if test "x$LEX" != xflex; then
+	LEX="$SHELL $missing_dir/missing flex"
+	AC_SUBST([LEX_OUTPUT_ROOT], [lex.yy])
+	AC_SUBST([LEXLIB], [''])
+fi
+
 AC_OUTPUT([Makefile src/Makefile])
 
 

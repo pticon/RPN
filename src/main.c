@@ -6,8 +6,17 @@
 
 #include "rpn.h"
 
+#include "rpn_lex.h"
 
 int infinite;
+
+static int	(*rpn_input_p)(char *, int size);
+
+int
+rpn_input(char *buf, int size)
+{
+	return rpn_input_p(buf, size);
+}
 
 static void
 usage(void)
@@ -25,52 +34,47 @@ version(void)
 }
 
 static int
-process(char *(*get_input)(void *), void *priv)
+process(void)
 {
-	char			*input,
-				*arg;
-	const struct operator	*op;
 	int			ret;
 	DEFINE_LIST_HEAD(stack);
 
-	infinite = 1;
-
-	while ( infinite )
-	{
-		input = get_input(priv);
-
-		if ( !input )
-			break;
-
-		for ( arg = strtok(input, " ") ; arg ; arg = strtok(NULL, " ") )
-		{
-			if ( (op = get_operator_by_name(arg)) != NULL )
-				ret = op->apply(&stack);
-			else
-				ret = stack_push(&stack, arg);
-
-			if ( ret )
-				fprintf(stderr, "Error (%d): %s\n", ret,
-					rpn_geterr(ret));
-		}
-
-		free(input);
-	}
+	ret = yylex(&stack);
 
 	stack_free(&stack);
 
-	return 0;
+	return ret;
 }
 
-static char *
-get_input_readline(void *arg)
+static int
+get_input_readline(char *buf, int size)
 {
 	char	*c;
+	size_t	len;
+	int	ret;
 
-	if ( (c = readline("[" PROGNAME "] ")) )
-		add_history(c);
+	while ( 1 )
+	{
+		if ( !infinite )
+			return 0;
 
-	return c;
+		if ( (c = readline("[" PROGNAME "] ")) )
+			add_history(c);
+		else
+			return 0;
+
+		if ( (len = strlen(c)) != 0 )
+			break;
+	}
+
+	len++;
+	ret = len < size ? len : size;
+
+	memcpy(buf, c, ret);
+
+	free(c);
+
+	return ret;
 }
 
 static int
@@ -78,37 +82,30 @@ interactive(void)
 {
 	version();
 
-	return process(get_input_readline, NULL);
+	infinite = 1;
+
+	rpn_input_p = get_input_readline;
+
+	return process();
 }
 
-static char *
-get_input_file(void *arg)
+static int
+get_input_file(char *buf, int size)
 {
-	char	*line = NULL;
-	size_t	n = 0;
-	FILE	*f = arg;
-	int	len;
+	int	ret;
 
-	for (;;)
+	errno = 0;
+
+	while ( (ret = (int)fread(buf, 1, (size_t) size, yyin)) == 0 && ferror(yyin) )
 	{
-		if ( getline(&line, &n, f) < 0 )
-			return NULL;
+		if( errno != EINTR)
+			return 0;
 
-		len = strlen(line);
-
-		if ( len && line[len-1] == '\n' )
-			line[--len] = '\0';
-
-		if ( !len )
-			continue;
-
-		if ( line[0] == '#' )
-			continue;
-
-		break;
+		errno = 0;
+		clearerr(yyin);
 	}
 
-	return line;
+	return ret;
 }
 
 static int
@@ -123,7 +120,11 @@ process_file(const char *file)
 		return -1;
 	}
 
-	ret = process(get_input_file, f);
+	yyin = f;
+
+	rpn_input_p = get_input_file;
+
+	ret = process();
 
 	fclose(f);
 
